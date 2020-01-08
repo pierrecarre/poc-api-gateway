@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  traefik:
+    image: traefik:2.1
+    ports:
+      - "8090:8080"
+      - "7080:80"
+    volumes:
+      - "./traefix:/etc/traefik/"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      api-gateway-net:
+        aliases:
+          - traefik
+  api-service:
+    build: ./api-service
+    image: api-service:latest
+    expose:
+      - "80"
+    networks:
+      api-gateway-net:
+        aliases:
+          - api-service
+networks:
+  api-gateway-net:
+    driver: bridge

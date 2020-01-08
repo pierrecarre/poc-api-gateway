@@ -1,0 +1,8 @@
+server.port: 8085
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://127.0.0.1:7080/auth/realms/dev"
+          jwk-set-uri: "http://127.0.0.1:7080/auth/realms/dev/protocol/openid-connect/certs"

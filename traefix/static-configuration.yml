@@ -1,0 +1,11 @@
+# Static configuration (routing and services)
+http:
+  routers:
+    api-service-router:
+      rule: PathPrefix(`/api/v1/employees/`)
+      service: api-service
+  services:
+    api-service:
+      loadBalancer:
+        servers:
+          - url: http://api-service
